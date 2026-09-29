@@ -1,0 +1,32 @@
+{
+  "name": "@ztype/web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.2.6",
+    "@fontsource/jetbrains-mono": "^5.2.6",
+    "@fontsource/space-grotesk": "^5.2.9",
+    "@react-three/fiber": "^9.3.0",
+    "@ztype/core": "*",
+    "firebase": "^12.3.0",
+    "idb": "^8.0.3",
+    "lucide-react": "^0.544.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.1",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@types/three": "^0.180.0",
+    "@vitejs/plugin-react": "^5.0.3",
+    "vite": "^7.1.7"
+  }
+}

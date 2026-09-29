@@ -1,0 +1,24 @@
+{
+  "name": "@ztype/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --env-file-if-exists=.env src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node22 --format=esm --external:express --external:helmet --external:express-rate-limit --external:firebase-admin/* --external:zod --outfile=dist/index.js",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@ztype/core": "*",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "firebase-admin": "^14.5.0",
+    "helmet": "^8.1.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "esbuild": "^0.25.10",
+    "tsx": "^4.20.5"
+  }
+}

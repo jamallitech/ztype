@@ -1,0 +1,43 @@
+{
+  "name": "ztype",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "dev": "concurrently -n web,api -c cyan,magenta \"npm run dev -w @ztype/web\" \"npm run dev -w @ztype/api\"",
+    "dev:local": "node --env-file-if-exists=.env.local scripts/dev-local.mjs",
+    "build": "npm run build -w @ztype/web && npm run build -w @ztype/api",
+    "typecheck": "tsc --noEmit -p packages/core && tsc --noEmit -p apps/web && tsc --noEmit -p apps/api",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:emulators": "node --env-file-if-exists=.env.local scripts/firebase-cli.mjs emulators:exec --project demo-ztype --only auth,firestore \"npm run test:integration\"",
+    "test:integration": "vitest run --config vitest.emulator.config.ts && playwright test --config playwright.emulator.config.ts",
+    "test:visual": "node scripts/visual-check.mjs",
+    "emulators": "node --env-file-if-exists=.env.local scripts/firebase-cli.mjs emulators:start --project demo-ztype --only auth,firestore --import=.firebase/local-data --export-on-exit=.firebase/local-data",
+    "preview": "npm run preview -w @ztype/web"
+  },
+  "overrides": {
+    "gaxios@6.7.1": {
+      "uuid": "^11.1.1"
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "@types/node": "^22.18.6",
+    "concurrently": "^9.2.1",
+    "firebase-tools": "^15.31.0",
+    "prettier": "^3.9.9",
+    "typescript": "~5.9.2",
+    "vitest": "^5.0.2"
+  }
+}

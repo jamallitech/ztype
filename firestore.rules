@@ -1,0 +1,8 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Browser clients never access Firestore. Express checks ownership and verified
+    // identity on every request; its Admin SDK uses the Cloud Run service identity.
+    match /{document=**} { allow read, write: if false; }
+  }
+}

@@ -1,0 +1,14 @@
+node_modules
+**/node_modules
+**/dist
+.git
+.firebase
+.cache
+.env*
+**/.env*
+*.log
+**/*.log
+test-results
+playwright-report
+service-account*.json
+**/service-account*.json
