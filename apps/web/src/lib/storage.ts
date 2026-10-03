@@ -1,11 +1,14 @@
 import { openDB } from 'idb';
 import {
   addToProgress,
+  campaignProgress,
+  type CampaignProgress,
   defaultPreferences,
   emptyProgress,
   type Attempt,
   type Preferences,
   type Progress,
+  type MissionResult,
 } from '@ztype/core';
 
 export type LocalData = {
@@ -15,6 +18,8 @@ export type LocalData = {
   pending: string[];
   preferencesPending: boolean;
   displayName: string;
+  missionRuns?: MissionResult[];
+  campaign?: CampaignProgress;
 };
 const memory = new Map<string, LocalData>();
 const locks = new Map<string, Promise<unknown>>();
@@ -36,6 +41,8 @@ const fresh = (): LocalData => ({
   pending: [],
   preferencesPending: false,
   displayName: 'Explorer',
+  missionRuns: [],
+  campaign: {},
 });
 
 export async function readLocal(owner: string): Promise<LocalData> {
@@ -44,6 +51,8 @@ export async function readLocal(owner: string): Promise<LocalData> {
     const db = await database();
     const value: LocalData = (await db.get('profiles', owner)) ?? fresh();
     db.close();
+    // Old Moon wins migrate on read; the permanent summary outlives the 100-run log.
+    value.campaign = campaignProgress(value.missionRuns ?? [], value.campaign);
     memory.set(owner, value);
     return structuredClone(value);
   } catch {

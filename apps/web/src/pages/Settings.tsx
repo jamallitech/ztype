@@ -185,7 +185,7 @@ export default function Settings() {
           <h2 id="clear-title">{t('Start a fresh flight log?')}</h2>
           <p>
             {t(
-              'This removes your guest results and lesson progress from this browser. Your preferences will stay.',
+              'This removes your guest results, mission log, and lesson progress from this browser. Your preferences will stay.',
             )}
           </p>
           <div className={s.resultActions}>

@@ -2083,7 +2083,9 @@
     gap: 15px;
   }
   .navLink {
-    padding: 11px 12px;
+    padding: 11px 8px;
+    gap: 6px;
+    font-size: 12px;
   }
   .nav {
     margin: 0;
@@ -2292,12 +2294,13 @@
     padding: 4px;
   }
   .navLink {
-    padding: 9px 8px;
-    font-size: 11px;
-    gap: 6px;
+    padding: 9px 6px;
+    font-size: 10px;
+    justify-content: center;
+    flex: 1;
   }
   .navLink svg {
-    width: 14px;
+    display: none;
   }
   .accountButton {
     font-size: 11px;

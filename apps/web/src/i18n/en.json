@@ -231,7 +231,7 @@
   "This link is invalid or has already been used.": "This link is invalid or has already been used.",
   "This link is not supported. Please request a new email.": "This link is not supported. Please request a new email.",
   "This little journey is for your fingers. Pasting is disabled.": "This little journey is for your fingers. Pasting is disabled.",
-  "This removes your guest results and lesson progress from this browser. Your preferences will stay.": "This removes your guest results and lesson progress from this browser. Your preferences will stay.",
+  "This removes your guest results, mission log, and lesson progress from this browser. Your preferences will stay.": "This removes your guest results, mission log, and lesson progress from this browser. Your preferences will stay.",
   "Time well spent": "Time well spent",
   "to move between controls": "to move between controls",
   "to take a breath": "to take a breath",
@@ -289,5 +289,6 @@
   "YOUR NEXT ORBIT": "YOUR NEXT ORBIT",
   "A little focus.": "A little focus.",
   "A whole new world.": "A whole new world.",
-  "Your words power the journey.": "Your words power the journey."
+  "Your words power the journey.": "Your words power the journey.",
+  "Missions": "Missions"
 }

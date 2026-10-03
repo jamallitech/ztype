@@ -9,6 +9,7 @@ import {
   CloudOff,
   Keyboard,
   Orbit,
+  Rocket,
   Settings2,
   Sparkle,
   UserRound,
@@ -22,13 +23,14 @@ const Learn = lazy(() => import('./pages/Learn'));
 const Progress = lazy(() => import('./pages/Progress'));
 const Settings = lazy(() => import('./pages/Settings'));
 const AuthAction = lazy(() => import('./pages/AuthAction'));
+const Missions = lazy(() => import('./pages/Missions'));
 
 export default function App() {
   const app = useApp();
   const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = `${location.pathname === '/learn' ? t('Flight academy') : location.pathname === '/progress' ? t('Your progress') : location.pathname === '/settings' ? t('Your space') : t('Find your flow')} — Ztype`;
+    document.title = `${location.pathname === '/missions' ? t('Missions') : location.pathname === '/learn' ? t('Flight academy') : location.pathname === '/progress' ? t('Your progress') : location.pathname === '/settings' ? t('Your space') : t('Find your flow')} — Ztype`;
   }, [location.pathname]);
   return (
     <div className={s.app}>
@@ -48,6 +50,7 @@ export default function App() {
           <nav className={s.nav} aria-label={t('Main navigation')}>
             {[
               { to: '/', title: t('Practice'), Icon: Keyboard },
+              { to: '/missions', title: t('Missions'), Icon: Rocket },
               { to: '/learn', title: t('Learn'), Icon: BookOpen },
               { to: '/progress', title: t('Progress'), Icon: BarChart3 },
               { to: '/settings', title: t('Settings'), Icon: Settings2 },
@@ -115,6 +118,7 @@ export default function App() {
             <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path="/" element={<Practice key={app.owner} />} />
+                <Route path="/missions" element={<Missions key={app.owner} />} />
                 <Route path="/learn" element={<Learn />} />
                 <Route path="/progress" element={<Progress key={app.owner} />} />
                 <Route path="/settings" element={<Settings key={app.owner} />} />

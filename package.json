@@ -23,8 +23,10 @@
     "test:emulators": "node --env-file-if-exists=.env.local scripts/firebase-cli.mjs emulators:exec --project demo-ztype --only auth,firestore \"npm run test:integration\"",
     "test:integration": "vitest run --config vitest.emulator.config.ts && playwright test --config playwright.emulator.config.ts",
     "test:visual": "node scripts/visual-check.mjs",
+    "test:mission-visual": "node scripts/mission-visual.mjs",
     "emulators": "node --env-file-if-exists=.env.local scripts/firebase-cli.mjs emulators:start --project demo-ztype --only auth,firestore --import=.firebase/local-data --export-on-exit=.firebase/local-data",
-    "preview": "npm run preview -w @ztype/web"
+    "preview": "npm run preview -w @ztype/web",
+    "test:campaign-visual": "node scripts/campaign-visual.mjs"
   },
   "overrides": {
     "gaxios@6.7.1": {

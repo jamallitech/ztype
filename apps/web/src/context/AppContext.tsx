@@ -11,11 +11,13 @@ import {
 import { onIdTokenChanged, signOut, type User } from 'firebase/auth';
 import {
   addToProgress,
+  campaignProgress,
   emptyProgress,
   type Attempt,
   type Preferences,
   type Profile,
   type Progress,
+  type MissionResult,
 } from '@ztype/core';
 import { api, attemptInput, auth } from '../lib/firebase';
 import {
@@ -40,6 +42,7 @@ type AppState = {
   authOpen: boolean;
   setAuthOpen: (open: boolean) => void;
   saveAttempt: (attempt: Attempt) => Promise<void>;
+  saveMission: (result: MissionResult) => Promise<void>;
   setPreferences: (patch: Partial<Preferences>) => Promise<void>;
   setDisplayName: (name: string) => Promise<void>;
   syncNow: () => Promise<void>;
@@ -217,6 +220,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
     );
     void syncNow();
   };
+  const saveMission = async (result: MissionResult) => {
+    publish(
+      owner,
+      await changeLocal(owner, (current) => ({
+        ...current,
+        campaign: campaignProgress([result, ...(current.missionRuns ?? [])], current.campaign),
+        missionRuns: [
+          ...new Map([result, ...(current.missionRuns ?? [])].map((run) => [run.id, run])).values(),
+        ].slice(0, 100),
+      })),
+    );
+  };
   const setDisplayName = async (displayName: string) => {
     publish(
       owner,
@@ -298,6 +313,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         authOpen,
         setAuthOpen,
         saveAttempt,
+        saveMission,
         setPreferences,
         setDisplayName,
         syncNow,

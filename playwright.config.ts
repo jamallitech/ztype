@@ -34,6 +34,7 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     env: {
       VITE_USE_EMULATORS: 'false',
+      VITE_UNLOCK_ALL_LEVELS: 'false',
       VITE_FIREBASE_API_KEY: '',
       VITE_FIREBASE_AUTH_DOMAIN: '',
       VITE_FIREBASE_PROJECT_ID: '',
